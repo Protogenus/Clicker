@@ -21,12 +21,30 @@ const sellWood = document.querySelector("#sell-wood");
 const sellOre = document.querySelector("#sell-ore");
 const sellFish = document.querySelector("#sell-fish");
 
+const buyAxe = document.querySelector("#buy-axe");
+const buyPickaxe = document.querySelector("#buy-pickaxe");
+const buyRod = document.querySelector("#buy-rod");
+
+const axeHeading = document.querySelector("#axe-heading");
+const pickaxeHeading = document.querySelector("#pickaxe-heading");
+const rodHeading = document.querySelector("#rod-heading");
+
 // Game variables ---
 let money = 0;
 
 let lumberjacks = 0;
+let lumberjack_cost = 500;
 let miners = 0;
+let miner_cost = 1000;
 let fisherman = 0;
+let fisherman_cost = 1500;
+
+let axes = 0;
+let axeCost = 50;
+let pickaxes = 0;
+let pickaxeCost = 100;
+let rods = 0;
+let rodCost = 150;
 
 let wood = 0;
 let woodPerSecond = 0;
@@ -44,18 +62,33 @@ let fishCost = 15;
 
 // Gathering buttons
 woodbtn.addEventListener("click", function() {
-    wood += 1;
-    woodHeading.innerHTML = `Wood: ${wood}`; 
+    if (axes >= 1) {
+        wood += 2 * axes;
+        woodHeading.innerHTML = `Wood: ${wood}`; 
+    } else {
+        wood += 1;
+        woodHeading.innerHTML = `Wood: ${wood}`; 
+    }
 });
 
 orebtn.addEventListener("click", function() {
-    ore += 1;
-    oreHeading.innerHTML = `Ore: ${ore}`; 
+    if (pickaxes >= 1) {
+        ore += 2 * pickaxes;
+        oreHeading.innerHTML = `Ore: ${ore}`; 
+    } else {
+        ore += 1;
+        oreHeading.innerHTML = `Ore: ${ore}`; 
+    }
 });
 
 fishbtn.addEventListener("click", function() {
-    fish += 1;
-    fishHeading.innerHTML = `Fish: ${fish}`; 
+    if (rods >= 1) {
+        fish += 2 * rods;
+        fishHeading.innerHTML = `Fish: ${fish}`; 
+    } else {
+        fish += 1;
+        fishHeading.innerHTML = `Fish: ${fish}`; 
+    }
 });
 
 // Selling buttons
@@ -74,38 +107,65 @@ sellFish.addEventListener("click", function() {
     fish = 0;
 })
 
+// Buying tools
+buyAxe.addEventListener("click", function() {
+    if (money >= axeCost) {
+        money -= axeCost;
+        axes += 1;
+    } else {
+        alert("Not enough money!");
+    }
+})
+
+buyPickaxe.addEventListener("click", function() {
+    if (money >= pickaxeCost) {
+        money -= pickaxeCost;
+        pickaxes += 1;
+    } else {
+        alert("Not enough money!");
+    }
+})
+
+buyRod.addEventListener("click", function() {
+    if (money >= rodCost) {
+        money -= rodCost;
+        rods += 1;
+    } else {
+        alert("Not enough money!");
+    }
+})
+
+
+
 
 // Worker buttons
 autowood.addEventListener("click", function() {
-    woodPerSecond += 1;
-    lumberjacks += 1;
+    if (money >= lumberjack_cost) {
+        woodPerSecond += 1;
+        lumberjacks += 1;
+    } else {
+        alert("Not enough money!");
+    }
 });
 
 autoore.addEventListener("click", function() {
-    orePerSecond += 1;
-    miners += 1;
+    if (money >= miner_cost) {
+        orePerSecond += 1;
+        miners += 1;
+    } else {
+        alert("Not enough money!"); 
+    }
 });
 
 autofish.addEventListener("click", function() {
-    fishPerSecond += 1;
-    fisherman += 1;
+    if (money >= fisherman_cost) {
+        fishPerSecond += 1;
+        fisherman += 1;
+    } else {
+        alert("Not enough money!");
+    }
 });
 
-// Workers
-autowood.addEventListener("click", () => {
-    woodPerSecond += 1;
-    }
-);
-
-autoore.addEventListener("click", () => {
-    orePerSecond += 1;
-    }
-);
-
-autofish.addEventListener("click", () => {
-    fishPerSecond += 1;
-    }
-);
 
 // Functions ---
 function addWoodWorker() {
@@ -126,6 +186,8 @@ window.setInterval(function () {
     addWoodWorker()
     addoreWorker()
     addFishWorker()
+    moneyHeading.innerHTML = `$${money}`
+
     woodHeading.innerHTML = `Wood: ${wood}`;
     oreHeading.innerHTML = `Ore: ${ore}`;
     fishHeading.innerHTML = `Fish: ${fish}`;
@@ -133,5 +195,8 @@ window.setInterval(function () {
     woodWorkerHeading.innerHTML = `Lumberjacks: ${lumberjacks}`;
     oreWorkerHeading.innerHTML = `Miners: ${miners}`;
     fishWorkerHeading.innerHTML = `Fisherman: ${fisherman}`;
-    moneyHeading.innerHTML = `$${money}`
+
+    axeHeading.innerHTML = `Axes: ${axes}`;
+    pickaxeHeading.innerHTML = `Pickaxes: ${pickaxes}`;
+    rodHeading.innerHTML = `Rods: ${rods}`;
 }, 500);

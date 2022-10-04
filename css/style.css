@@ -1,0 +1,48 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 25vh;
+    gap: 150px;
+    text-align: center;
+}
+
+#stockpile-h1 {
+    margin-bottom: 20px;
+}
+
+button {
+    background: #666;
+    color: whitesmoke;
+    border: 2px solid whitesmoke;
+    font-size: 1.7rem;
+    padding: 1rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    min-width: 175px;
+}
+
+#upgrades {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 150px;
+    margin-top: 50px;
+    text-align: center;
+}
+
+#upgrades button {
+    font-size: 1rem;
+}
+
+button:hover {
+    background: #2e2e2e;
+    color: whitesmoke;
+    border: 2px solid whitesmoke;
+}

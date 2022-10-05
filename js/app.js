@@ -183,7 +183,7 @@ createSteel.addEventListener("click", function() {
         charcoal -= 10;
         steel += 1;
     } else {
-        alert("Not enough resources!")
+        alert("Not enough resource!")
     }
 })
 

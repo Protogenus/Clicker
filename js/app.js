@@ -143,6 +143,7 @@ autowood.addEventListener("click", function() {
     if (money >= lumberjack_cost) {
         woodPerSecond += 1;
         lumberjacks += 1;
+        money -= lumberjack_cost;
     } else {
         alert("Not enough money!");
     }
@@ -152,6 +153,7 @@ autoore.addEventListener("click", function() {
     if (money >= miner_cost) {
         orePerSecond += 1;
         miners += 1;
+        money -= miner_cost;
     } else {
         alert("Not enough money!"); 
     }
@@ -161,6 +163,7 @@ autofish.addEventListener("click", function() {
     if (money >= fisherman_cost) {
         fishPerSecond += 1;
         fisherman += 1;
+        money -= fisherman_cost;
     } else {
         alert("Not enough money!");
     }

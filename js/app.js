@@ -29,6 +29,16 @@ const axeHeading = document.querySelector("#axe-heading");
 const pickaxeHeading = document.querySelector("#pickaxe-heading");
 const rodHeading = document.querySelector("#rod-heading");
 
+const createPaper = document.querySelector("#create-paper")
+const createIron = document.querySelector("#create-iron")
+const createCharcoal = document.querySelector("#create-charcoal")
+const createSteel = document.querySelector("#create-steel")
+
+const paperHeading = document.querySelector("#paper-heading");
+const ironHeading = document.querySelector("#iron-heading");
+const charcoalHeading = document.querySelector("#charcoal-heading");
+const steelHeading = document.querySelector("#steel-heading");
+
 // Game variables ---
 let money = 0;
 
@@ -57,6 +67,11 @@ let oreCost = 50;
 let fish = 0;
 let fishPerSecond = 0;
 let fishCost = 15;
+
+let paper = 0;
+let iron = 0;
+let charcoal = 0;
+let steel = 0;
 
 // Event listeners ----
 
@@ -135,6 +150,43 @@ buyRod.addEventListener("click", function() {
     }
 })
 
+createPaper.addEventListener("click", function() {
+    if (wood >= 1) {
+        wood -= 1;
+        paper += 10;
+    } else {
+        alert("Not enough wood!")
+    }
+})
+
+createIron.addEventListener("click", function() {
+    if (ore >= 2) {
+        ore -= 2;
+        iron += 1;
+    } else {
+        alert("Not enough ore!")
+    }
+})
+
+createCharcoal.addEventListener("click", function() {
+    if (wood >= 1) {
+        wood -= 1;
+        charcoal += 10;
+    } else {
+        alert("Not enough wood!")
+    }
+})
+
+createSteel.addEventListener("click", function() {
+    if (iron >= 2 && charcoal >= 10) {
+        iron -= 2;
+        charcoal -= 10;
+        steel += 1;
+    } else {
+        alert("Not enough resources!")
+    }
+})
+
 
 
 
@@ -170,6 +222,8 @@ autofish.addEventListener("click", function() {
 });
 
 
+
+
 // Functions ---
 function addWoodWorker() {
     wood += woodPerSecond;
@@ -198,6 +252,11 @@ window.setInterval(function () {
     woodWorkerHeading.innerHTML = `Lumberjacks: ${lumberjacks}`;
     oreWorkerHeading.innerHTML = `Miners: ${miners}`;
     fishWorkerHeading.innerHTML = `Fisherman: ${fisherman}`;
+
+    paperHeading.innerHTML = `Paper: ${paper}`
+    ironHeading.innerHTML = `Iron: ${iron}`
+    charcoalHeading.innerHTML = `Charcoal: ${charcoal}`
+    steelHeading.innerHTML = `Steel: ${steel}`
 
     axeHeading.innerHTML = `Axes: ${axes}`;
     pickaxeHeading.innerHTML = `Pickaxes: ${pickaxes}`;

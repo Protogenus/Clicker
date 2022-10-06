@@ -42,7 +42,10 @@ function toCamelCase(string) {
     "paper-heading",
     "iron-heading",
     "charcoal-heading",
-    "steel-heading"
+    "steel-heading",
+    "create-college",
+    "create-farm",
+    "farm-popup",
   ];
   
   // Generate the elements based on the ids
@@ -51,6 +54,8 @@ function toCamelCase(string) {
     return elements;
   }, {});
   
+  
+
   // elements looks like this now:
   // {
   //    woodHeading: Element,
@@ -98,6 +103,11 @@ let paper = 0;
 let iron = 0;
 let charcoal = 0;
 let steel = 0;
+
+let house = true;
+let boat = true;
+let farmplot = true;
+let college = true;
 
 
 // Event listeners ----
@@ -212,7 +222,25 @@ elements.createSteel.addEventListener("click", function() {
         charcoal -= 10;
         steel += 1;
     } else {
-        alert("Not enough resource!")
+        alert("Not enough resources!")
+    }
+})
+
+elements.createCollege.addEventListener("click", function() {
+    if (money >= 50000 && steel >= 100 && iron >= 50) {
+        money -= 50000;
+        steel -= 100;
+        iron -= 50;
+    } else {
+        alert("Not enough resources!")
+    }
+})
+
+elements.createFarm.addEventListener("click", function() {
+    if (wood >= 1) {
+        elements.farmPopup.style.display = "block";
+    } else {
+        alert("Not enough resources!")
     }
 })
 
@@ -248,6 +276,8 @@ elements.autoFish.addEventListener("click", function() {
         alert("Not enough money!");
     }
 });
+
+
 
 
 

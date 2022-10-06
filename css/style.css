@@ -89,3 +89,10 @@ button:hover {
     color: whitesmoke;
     border: 2px solid whitesmoke;
 }
+
+#farm-popup {
+    display: none;
+    border: 1px solid black;
+    background-color: #674428;
+    border-radius: 8px;
+}
